@@ -39,7 +39,7 @@ virtualbox ubuntuの場合、USB設定が必要。
         ```
         virtulaboxで認識されない場合はWindowsのデバイスマネージャに出てきてしまう。
         うまくいくとwindowws側には出てこなくなる。
-        **[ダメだった例]**
+        - **[ダメだった例]**
         ![](img/device-manager-2.PNG)
-        **[うまく行った例]**
+        - **[うまく行った例]**
 ![](img/device-manager-1.PNG)
