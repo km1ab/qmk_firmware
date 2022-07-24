@@ -1,7 +1,10 @@
 
 # trable shoot
-
+Ubuntu 18.04(in virtualbox)でのqmkセットアップのトラブルシューティング
 ## 1. setup error 
+```
+$ python3 -m pip install --user qmk
+```
 qmkのセットアップがうまく行かない場合は以下で対応。
 - try update pip
     ```sh
@@ -9,8 +12,14 @@ qmkのセットアップがうまく行かない場合は以下で対応。
     ```
     私の環境ではpillowのビルドで失敗した。pipが古いとそうなるみたい。
 ## 2. write flash error
-キーボードのF/W書き込みがうまく行かない場合は以下で対応。
+```sh
+$ make mint60:default
+$ sudo make mint60:default:avrdude
+```
+```make mint60:default:avrdude```の後にF/W書き込みが始まるわけだが、失敗する場合がある。頭にsudoを付ける。
+それでもうまく行かない場合は以下で対応。
 - try change sudo setting
+https://zenn.dev/noraworld/articles/sudo-path-env
 - virtual box case
     - try USB setting
 virtualbox ubuntuの場合、USB設定が必要。
