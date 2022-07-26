@@ -43,3 +43,10 @@ virtualbox ubuntuの場合、USB設定が必要。
         ![](img/device-manager-2.PNG)
         - **[うまく行った例]**
 ![](img/device-manager-1.PNG)
+
+
+
+## 3. reduce rom size
+たったこれだけで、最適化が行われる。すごくね。
+- rules.mk
+```LTO_ENABLE = yes```

@@ -16,6 +16,8 @@ NKRO_ENABLE = no            # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
 AUDIO_ENABLE = no           # Audio output
+MIDI_ENABLE = yes
 
 SPLIT_KEYBOARD = yes
 VIA_ENABLE = yes
+LTO_ENABLE = yes
