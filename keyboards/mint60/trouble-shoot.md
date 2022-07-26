@@ -50,3 +50,4 @@ virtualbox ubuntuの場合、USB設定が必要。
 たったこれだけで、最適化が行われる。すごくね。
 - rules.mk
 ```LTO_ENABLE = yes```
+https://zenn.dev/koron/articles/98324ab760e83a
