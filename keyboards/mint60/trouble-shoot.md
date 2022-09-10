@@ -1,7 +1,9 @@
 
-# trable shoot
-Ubuntu 18.04(in virtualbox)でのqmkセットアップのトラブルシューティング
-## 1. setup error 
+# 1. Trable shoot
+qmkセットアップのトラブルシューティング
+- Ubuntu 18.04(in virtualbox)
+- (Ubuntu 20.04)
+## 1.1. setup error 
 ```
 $ python3 -m pip install --user qmk
 ```
@@ -11,7 +13,14 @@ qmkのセットアップがうまく行かない場合は以下で対応。
     $ python3 -m pip install --upgrade pip
     ```
     私の環境ではpillowのビルドで失敗した。pipが古いとそうなるみたい。
-## 2. write flash error
+
+## 1.2. build error
+git clone後にビルドできなかった場合は以下でセットアップ。
+```
+$ qmk setup
+```
+
+## 1.3. write flash error
 ```sh
 $ make mint60:default
 $ sudo make mint60:default:avrdude
@@ -46,8 +55,14 @@ virtualbox ubuntuの場合、USB設定が必要。
 
 
 
-## 3. reduce rom size
+## 1.4. reduce rom size
 たったこれだけで、最適化が行われる。すごくね。
 - rules.mk
 ```LTO_ENABLE = yes```
 https://zenn.dev/koron/articles/98324ab760e83a
+
+## 1.5. キーボードを追加する
+```
+$ qmk new-keyboard
+```
+- https://5z6p.com/2021/12/18/advent-kbd-2021/
