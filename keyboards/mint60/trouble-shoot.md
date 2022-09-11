@@ -1,9 +1,20 @@
 
-# 1. Trable shoot
-qmkセットアップのトラブルシューティング
-- Ubuntu 18.04(in virtualbox)
-- (Ubuntu 20.04)
+# 目次 <!-- omit in toc -->
+
+- [1. トラブルシューティング](#1-トラブルシューティング)
+  - [1.1. setup error](#11-setup-error)
+  - [1.2. build error](#12-build-error)
+  - [1.3. write flash error](#13-write-flash-error)
+- [2. Tips](#2-tips)
+  - [2.1. reduce rom size](#21-reduce-rom-size)
+  - [2.2. キーボードを追加する](#22-キーボードを追加する)
+  
+# 1. トラブルシューティング
+- 対象
+  - Ubuntu 18.04(in virtualbox)
+  - (Ubuntu 20.04)
 ## 1.1. setup error 
+qmkセットアップのトラブルシューティング
 ```
 $ python3 -m pip install --user qmk
 ```
@@ -54,15 +65,17 @@ virtualbox ubuntuの場合、USB設定が必要。
 ![](img/device-manager-1.PNG)
 
 
-
-## 1.4. reduce rom size
+# 2. Tips
+## 2.1. reduce rom size
 たったこれだけで、最適化が行われる。すごくね。
 - rules.mk
 ```LTO_ENABLE = yes```
 https://zenn.dev/koron/articles/98324ab760e83a
 
-## 1.5. キーボードを追加する
+## 2.2. キーボードを追加する
 ```
 $ qmk new-keyboard
 ```
 - https://5z6p.com/2021/12/18/advent-kbd-2021/
+
+<!-- ## 2.3. hogehoge -->
