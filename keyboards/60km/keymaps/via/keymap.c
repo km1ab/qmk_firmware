@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_L1] = LAYOUT(
     //,--------------------------------------------------------------------------------------------------------------------------------------.
-        TG(_L2),   QK_BOOT,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______, _______,
+        TG(_L2),   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______, _______,
     //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
         _______, _______, _______, _______, _______, _______, _______, _______,   KC_UP, _______, _______, _______, _______, _______,
     //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_L2] = LAYOUT(
     //,--------------------------------------------------------------------------------------------------------------------------------------.
-        TG(_L2), RGB_HUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
+        TG(_L2), RGB_HUI, QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG, QK_BOOT,
     //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
         RGB_TOG, RGB_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
@@ -67,9 +67,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case RGB_TOG:
+            // Play a tone when enter is pressed
+            if (record->event.pressed) {
+                if(rgblight_is_enabled())
+                {
+                    rgblight_sethsv_at( 0, 0, 0, LAYER_POS_LED_IDX);
+                }
+            }
+            return true; // Let QMK send the enter press/release events
+        default:
+            return true; // Process all other keycodes normally
+    }
+}
+
 //A description for expressing the layer position in LED mode.
 layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGBLIGHT_ENABLE
+    bool is_base = false;
     switch (get_highest_layer(state)) {
     case _L1:
       rgblight_sethsv_at(HSV_BLUE, LAYER_POS_LED_IDX);
@@ -82,9 +99,21 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     default: //  for any other layers, or the default layer
       rgblight_sethsv_at( 0, 0, 0, LAYER_POS_LED_IDX);
+      is_base = true;
       break;
     }
-    rgblight_set_effect_range( 0, 7);
+    if(is_base)
+    {
+        rgblight_set_effect_range(0, 16);
+    }
+    else
+    {
+        for(int i=0; i<LAYER_POS_LED_IDX; i++){
+            rgblight_sethsv_at( 0, 0, 0, i);
+        }
+        rgblight_set_effect_range(8, 8);
+    }
+
 #endif
 return state;
 }
