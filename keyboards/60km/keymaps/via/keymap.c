@@ -104,14 +104,17 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
     if(is_base)
     {
-        rgblight_set_effect_range(0, 16);
+        rgblight_set_effect_range(0, 20);
     }
     else
     {
         for(int i=0; i<LAYER_POS_LED_IDX; i++){
             rgblight_sethsv_at( 0, 0, 0, i);
         }
-        rgblight_set_effect_range(8, 8);
+        for(int i=LAYER_POS_LED_IDX+1; i<=LAYER_POS_LED_IDX+2; i++){
+            rgblight_sethsv_at( 0, 0, 0, i);
+        }
+        rgblight_set_effect_range(10, 10);
     }
 
 #endif
