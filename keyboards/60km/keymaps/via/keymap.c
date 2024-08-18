@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
+#define RGBLIGHT_ENABLE // already enabled at keyboard.json
 
 enum layer_number {
   _BASE = 0,
@@ -11,6 +12,8 @@ enum layer_number {
 };
 
 #define LAYER_POS_LED_IDX (7)
+#define NUMLOCK_STATUS_LED_IDX (8)
+#define CAPSLOCK_STATUS_LED_IDX (9)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
