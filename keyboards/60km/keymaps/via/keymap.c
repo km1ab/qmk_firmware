@@ -11,9 +11,9 @@ enum layer_number {
   _L3,
 };
 
-#define LAYER_POS_LED_IDX (7)
-#define NUMLOCK_STATUS_LED_IDX (8)
-#define CAPSLOCK_STATUS_LED_IDX (9)
+#define LAYER_POS_LED_IDX (0)
+#define NUMLOCK_STATUS_LED_IDX (1)
+#define CAPSLOCK_STATUS_LED_IDX (2)
 #define XXX_STATUS_LED_IDX (18)
 #define YYY_STATUS_LED_IDX (19)
 
@@ -88,20 +88,24 @@ const rgblight_segment_t PROGMEM capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {LAYER_POS_LED_IDX, 1, 0,0,0}
+    // {LAYER_POS_LED_IDX, 1, 0,0,0},
+    {XXX_STATUS_LED_IDX, 2, 0,0,0}
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM L1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {LAYER_POS_LED_IDX, 1, HSV_BLUE},
-    {XXX_STATUS_LED_IDX, 2, HSV_BLUE}
+    {LAYER_POS_LED_IDX, 1, HSV_BLUE}
+    // {XXX_STATUS_LED_IDX, 2, 0,0,0}
+    // {XXX_STATUS_LED_IDX, 2, HSV_BLUE}
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM L2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {LAYER_POS_LED_IDX, 1, HSV_RED}
+    // {XXX_STATUS_LED_IDX, 2, 0,0,0}
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM L3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {LAYER_POS_LED_IDX, 1, HSV_PURPLE}
+    // {XXX_STATUS_LED_IDX, 2, 0,0,0}
 );
 
 // Now define the array of layers. Later layers take precedence
@@ -214,7 +218,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #if 1
 #if 1//def RGBLIGHT_LAYERS
     // Both layers will light up if both kb layers are active
-    rgblight_set_layer_state(2, (get_highest_layer(state)==_BASE));
+    // rgblight_set_layer_state(2, (get_highest_layer(state)==_BASE));
     rgblight_set_layer_state(3, (get_highest_layer(state)==_L1));
     rgblight_set_layer_state(4, (get_highest_layer(state)==_L2));
     rgblight_set_layer_state(5, (get_highest_layer(state)==_L3));
