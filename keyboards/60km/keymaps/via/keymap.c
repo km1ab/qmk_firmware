@@ -19,6 +19,7 @@ enum layer_number {
 
 // static bool is_numlock = false;
 // static bool is_capslock = false;
+static bool numlock_led_enable = false;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
@@ -166,7 +167,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(0, led_state.num_lock);
+    rgblight_set_layer_state(0, ((led_state.num_lock) && (numlock_led_enable)));
     rgblight_set_layer_state(1, led_state.caps_lock);
     return true;
 }
@@ -219,6 +220,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #if 1//def RGBLIGHT_LAYERS
     // Both layers will light up if both kb layers are active
     // rgblight_set_layer_state(2, (get_highest_layer(state)==_BASE));
+    if(get_highest_layer(state) != _L2)
+    {
+        numlock_led_enable = false;
+    }
+    else
+    {
+        numlock_led_enable = true;
+    }
     rgblight_set_layer_state(3, (get_highest_layer(state)==_L1));
     rgblight_set_layer_state(4, (get_highest_layer(state)==_L2));
     rgblight_set_layer_state(5, (get_highest_layer(state)==_L3));
