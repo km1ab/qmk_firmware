@@ -14,6 +14,6 @@
 #define RGBLIGHT_EFFECT_RGB_TEST
 #define RGBLIGHT_EFFECT_ALTERNATING
 #define RGBLIGHT_EFFECT_TWINKLE
-#define RGBLIGHT_LED_COUNT 20     // Number of LEDs in your strip
-#define RGBLED_SPLIT {10,10}
-#define RGBLIGHT_LED_MAP { 5,6,7,8,9,10,11,0,1,2,12,13,14,15,16,17,18,19,3,4 }
+#define RGBLIGHT_LED_COUNT 18     // Number of LEDs in your strip
+#define RGBLED_SPLIT {9,9}
+#define RGBLIGHT_LED_MAP { 6,7,8,9,10,11,0,1,2,12,13,14,15,16,17,18,3,4 }
