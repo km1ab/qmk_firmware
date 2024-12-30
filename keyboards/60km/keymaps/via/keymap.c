@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-#if 1//def RGBLIGHT_ENABLE
+#ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
 
 // Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
@@ -89,24 +89,19 @@ const rgblight_segment_t PROGMEM capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    // {LAYER_POS_LED_IDX, 1, 0,0,0},
     {XXX_STATUS_LED_IDX, 2, 0,0,0}
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM L1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {LAYER_POS_LED_IDX, 1, HSV_BLUE}
-    // {XXX_STATUS_LED_IDX, 2, 0,0,0}
-    // {XXX_STATUS_LED_IDX, 2, HSV_BLUE}
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM L2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {LAYER_POS_LED_IDX, 1, HSV_RED}
-    // {XXX_STATUS_LED_IDX, 2, 0,0,0}
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM L3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {LAYER_POS_LED_IDX, 1, HSV_PURPLE}
-    // {XXX_STATUS_LED_IDX, 2, 0,0,0}
 );
 
 // Now define the array of layers. Later layers take precedence
@@ -125,101 +120,15 @@ void keyboard_post_init_user(void) {
 }
 #endif
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case RGB_TOG:
-            // Play a tone when enter is pressed
-            if (record->event.pressed) {
-                if(rgblight_is_enabled())
-                {
-                    rgblight_sethsv_at( 0, 0, 0, LAYER_POS_LED_IDX);
-                    rgblight_sethsv_at( 0, 0, 0, NUMLOCK_STATUS_LED_IDX);
-                    rgblight_sethsv_at( 0, 0, 0, CAPSLOCK_STATUS_LED_IDX);
-                }
-                else
-                {
-                    // rgblight_enable_noeeprom();
-                    // if (is_numlock) {
-                    //     rgblight_sethsv_at(HSV_GREEN, NUMLOCK_STATUS_LED_IDX);
-                    // }
-                    // if (is_capslock) {
-                    //     rgblight_sethsv_at(HSV_GREEN, CAPSLOCK_STATUS_LED_IDX);
-                    // }
-                }
-            }
-            return true; // Let QMK send the enter press/release events
-        // case RGB_M_P:
-        //     // Play a tone when enter is pressed
-        //     if (record->event.pressed) {
-        //         rgblight_set_effect_range(19, 1);
-        //         for (int i = 0; i < LAYER_POS_LED_IDX; i++) {
-        //             rgblight_sethsv_at(0, 0, 0, i);
-        //         }
-        //         for (int i = CAPSLOCK_STATUS_LED_IDX+1; i < 20; i++) {
-        //             rgblight_sethsv_at(0, 0, 0, i);
-        //         }
-        //         rgblight_set();
-        //     }
-        //     return true; // Let QMK send the enter press/release events
-        default:
-            return true; // Process all other keycodes normally
-    }
-}
-
 bool led_update_user(led_t led_state) {
     rgblight_set_layer_state(0, ((led_state.num_lock) && (numlock_led_enable)));
     rgblight_set_layer_state(1, led_state.caps_lock);
     return true;
 }
-#if 0
-bool led_update_kb(led_t led_state) {
-    bool res = led_update_user(led_state);
-    if(res) {
-        // gpio_write_pin sets the pin high for 1 and low for 0.
-        // In this example the pins are inverted, setting
-        // it low/0 turns it on, and high/1 turns the LED off.
-        // This behavior depends on whether the LED is between the pin
-        // and VCC or the pin and GND.
-        // gpio_write_pin(B0, !led_state.num_lock);
-        // gpio_write_pin(B1, !led_state.caps_lock);
-#ifdef RGBLIGHT_ENABLE
-        // if (led_state.num_lock) {
-        //     rgblight_sethsv_at(HSV_GREEN, NUMLOCK_STATUS_LED_IDX);
-        //     is_numlock = true;
-        // } else {
-        //     rgblight_sethsv_at(0, 0, 0, NUMLOCK_STATUS_LED_IDX);
-        //     is_numlock = false;
-        // }
-        if (led_state.caps_lock) {
-            rgblight_sethsv_at(HSV_GREEN, CAPSLOCK_STATUS_LED_IDX);
-            is_capslock = true;
-        } else {
-            rgblight_sethsv_at(0, 0, 0, CAPSLOCK_STATUS_LED_IDX);
-            is_capslock = false;
-        }
-            rgblight_sethsv_at(0, 0, 0, XXX_STATUS_LED_IDX);
-            rgblight_sethsv_at(0, 0, 0, YYY_STATUS_LED_IDX);
-        // if ((led_state.num_lock) || (led_state.caps_lock)) {
-        //     for (int i = 0; i < LAYER_POS_LED_IDX; i++) {
-        //         rgblight_sethsv_at(0, 0, 0, i);
-        //     }
-        //     rgblight_set_effect_range(10, 10);
-        // }
-#endif
-        // gpio_write_pin(B2, !led_state.scroll_lock);
-        // gpio_write_pin(B3, !led_state.compose);
-        // gpio_write_pin(B4, !led_state.kana);
-    }
 
-    return res;
-}
-#endif
 //A description for expressing the layer position in LED mode.
 layer_state_t layer_state_set_user(layer_state_t state) {
-#if 1
-#if 1//def RGBLIGHT_LAYERS
-    // Both layers will light up if both kb layers are active
-    // rgblight_set_layer_state(2, (get_highest_layer(state)==_BASE));
+#ifdef RGBLIGHT_LAYERS
     if(get_highest_layer(state) != _L2)
     {
         numlock_led_enable = false;
@@ -228,45 +137,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     {
         numlock_led_enable = true;
     }
+    // Both layers will light up if both kb layers are active
+    // rgblight_set_layer_state(2, (get_highest_layer(state)==_BASE));
     rgblight_set_layer_state(3, (get_highest_layer(state)==_L1));
     rgblight_set_layer_state(4, (get_highest_layer(state)==_L2));
     rgblight_set_layer_state(5, (get_highest_layer(state)==_L3));
-#endif
-#else
-#ifdef RGBLIGHT_ENABLE
-    bool is_base = false;
-    switch (get_highest_layer(state)) {
-    case _L1:
-      rgblight_sethsv_at(HSV_BLUE, LAYER_POS_LED_IDX);
-      break;
-    case _L2:
-      rgblight_sethsv_at(HSV_RED, LAYER_POS_LED_IDX);
-      break;
-    case _L3:
-      rgblight_sethsv_at(HSV_PURPLE, LAYER_POS_LED_IDX);
-      break;
-    default: //  for any other layers, or the default layer
-      rgblight_sethsv_at( 0, 0, 0, LAYER_POS_LED_IDX);
-      is_base = true;
-      break;
-    }
-    if(is_base)
-    {
-        rgblight_set_clipping_range(0, 20);
-        rgblight_set_effect_range(0, 20);
-    }
-    else
-    {
-        // for(int i=0; i<LAYER_POS_LED_IDX; i++){
-        //     rgblight_sethsv_at( 0, 0, 0, i);
-        // }
-        // // for(int i=LAYER_POS_LED_IDX+1; i<=LAYER_POS_LED_IDX+2; i++){
-        // //     rgblight_sethsv_at( 0, 0, 0, i);
-        // // }
-        // rgblight_set_effect_range(10, 10);
-    }
-
-#endif
 #endif
 return state;
 }
