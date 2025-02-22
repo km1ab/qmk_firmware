@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //`--------------------------------------------------------------------------------------------------------------------'
     )
 };
-
+#ifdef RGBLIGHT_ENABLE
 const rgblight_segment_t PROGMEM rgb_default_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 16, HSV_BLUE}
 );
@@ -89,6 +89,8 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(0, layer_state_cmp(state, _BASE));
     return state;
 }
+#endif
+
 //A description for expressing the layer position in LED mode.
 layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGBLIGHT_ENABLE

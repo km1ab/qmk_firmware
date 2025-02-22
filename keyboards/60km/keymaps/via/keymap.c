@@ -11,11 +11,11 @@ enum layer_number {
   _L3,
 };
 
-#define LAYER_POS_LED_IDX (0)
-#define NUMLOCK_STATUS_LED_IDX (1)
+#define LAYER_POS_LED_IDX (4)
+#define NUMLOCK_STATUS_LED_IDX (3)
 #define CAPSLOCK_STATUS_LED_IDX (2)
-#define XXX_STATUS_LED_IDX (18)
-#define YYY_STATUS_LED_IDX (19)
+#define XXX_STATUS_LED_IDX (1)
+#define YYY_STATUS_LED_IDX (0)
 
 // static bool is_numlock = false;
 // static bool is_capslock = false;
