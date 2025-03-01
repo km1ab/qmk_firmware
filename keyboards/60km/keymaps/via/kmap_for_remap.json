@@ -1,7 +1,7 @@
 {
     "name": "60km",
-    "vendorId": "0xFEED",
-    "productId": "0x0000",
+    "vendorId": "0x6B6D",
+    "productId": "0x0010",
     "menus": [],
     "keycodes": [],
     "matrix": {
