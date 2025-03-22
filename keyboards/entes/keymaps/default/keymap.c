@@ -9,14 +9,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │ A │ B │ C │ D │
      * └───┴───┴───┴───┘
      */
-     [0] = LAYOUT(
-        KC_A
-    )
+    [0] = LAYOUT(KC_A) //
 };
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [0] =   { ENCODER_CCW_CW(KC_PGUP, KC_PGDN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }
+    [0] = // layer 0
+    {
+        // KiCad mode sample
+        // - vertical move
+        // - horizontal move
+        ENCODER_CCW_CW(LCTL(KC_MS_WH_UP), LCTL(KC_MS_WH_DOWN)), // encoder 1
+        ENCODER_CCW_CW(LSFT(KC_MS_WH_UP), LSFT(KC_MS_WH_DOWN))  // encoder 2
+    } //
 };
 #endif
 
@@ -36,4 +41,3 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 //     }
 //     return false;
 // }
-
