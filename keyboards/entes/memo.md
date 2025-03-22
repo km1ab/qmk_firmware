@@ -19,3 +19,9 @@
 推奨としては、フィルタ回路を組むべきとのこと。
 フィルタ回路はなくても動作したが、GND接続を見落としていたのは致命的だった。
 
+# 参考サイト
+- キーマップ関連
+    - https://github.com/qmk/qmk_firmware/blob/master/quantum/quantum_keycodes.h
+    - https://qiita.com/nemolize/items/7f3b9d65d02cf31a5169
+- XIAO RP2040
+    - https://www.switch-science.com/products/7634?srsltid=AfmBOoraMIKzfAfWzGMfhmFyVvpUwXy6bibaG5vwSvk0ArWDwB1sRrfQ
