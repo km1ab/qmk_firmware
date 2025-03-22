@@ -14,11 +14,18 @@
     "features": {
         "bootmagic": true,
         "extrakey": true,
-        "mousekey": true
+        "mousekey": true,
+        "encoder": true
     },
     "matrix_pins": {
         "direct": [
             ["GP27"]
+        ]
+    },
+    "encoder": {
+        "rotary": [
+                { "pin_a": "GP6", "pin_b": "GP7", "resolution": 2 },
+                { "pin_a": "GP28", "pin_b": "GP29", "resolution": 2 }
         ]
     },
     "layouts": {
