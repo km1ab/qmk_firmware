@@ -15,12 +15,25 @@
         "bootmagic": true,
         "extrakey": true,
         "mousekey": true,
-        "encoder": true
+        "encoder": true,
+        "rgblight": true
     },
     "matrix_pins": {
         "direct": [
-            ["GP27"]
+            ["GP26","GP27"]
         ]
+    },
+    "ws2812": {
+        "driver": "vendor",
+        "pin": "GP12"
+    },
+    "rgblight":
+    {
+        "led_count": 1,
+        "animations": {
+            "breathing": true
+        },
+        "max_brightness": 180
     },
     "encoder": {
         "rotary": [

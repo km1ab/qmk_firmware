@@ -25,6 +25,20 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif
 
+void keyboard_post_init_user(void) {
+    gpio_set_pin_output(GP11); // set OUTPUT to NEO_PWR pin of XIAO RP2040
+    gpio_write_pin_high(GP11); // set HIGH to NEO_PWR pin of XIAO RP2040
+
+    rgblight_sethsv(190, 200, 200); // blue??
+    // rgblight_sethsv_at(190, 255, 255, 0);   // blue??
+    // rgblight_sethsv_at(127, 255, 100, 0);   // 1st LED CYAN
+    // rgblight_sethsv_at(0, 255, 100, 1);   // 2nd LED RED
+    // rgblight_enable();
+    rgblight_disable();
+    rgblight_toggle();
+    rgblight_mode(RGBLIGHT_MODE_BREATHING); // animation default
+}
+
 // bool encoder_update_user(uint8_t index, bool clockwise) {
 //     if (index == 0) { /* First encoder */
 //         if (clockwise) {
