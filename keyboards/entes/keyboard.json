@@ -20,7 +20,7 @@
     },
     "matrix_pins": {
         "direct": [
-            ["GP26","GP27"]
+            ["GP26","GP27", "NO_PIN", "NO_PIN"]
         ]
     },
     "ws2812": {
@@ -37,14 +37,17 @@
     },
     "encoder": {
         "rotary": [
-                { "pin_a": "GP6", "pin_b": "GP7", "resolution": 2 },
-                { "pin_a": "GP28", "pin_b": "GP29", "resolution": 2 }
+                { "pin_a": "GP28", "pin_b": "GP29", "resolution": 2 },
+                { "pin_a": "GP6", "pin_b": "GP7", "resolution": 2 }
         ]
     },
     "layouts": {
         "LAYOUT": {
             "layout": [
-                {"x": 0, "y": 0, "matrix": [0, 0]}
+                {"matrix":[0,0], "label":"0,0", "x":0, "y":0}, 
+                {"matrix":[0,1], "label":"0,1", "x":1, "y":0}, 
+                {"matrix":[0,2], "label":"e0", "x":2, "y":0, "encoder": 0}, 
+                {"matrix":[0,3], "label":"e1", "x":3, "y":0, "encoder": 1}
             ]
         }
     }
