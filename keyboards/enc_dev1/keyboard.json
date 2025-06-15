@@ -19,7 +19,7 @@
         "rgblight": false
     },
     "matrix_pins": {
-        "cols": ["GP26","GP27","GP28","NO_PIN"],
+        "cols": ["GP28","GP27","GP26","NO_PIN"],
         "rows": ["GP29","GP6","GP7"]
     },
     "encoder": {
