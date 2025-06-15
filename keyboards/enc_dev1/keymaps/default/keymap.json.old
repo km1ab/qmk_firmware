@@ -1,0 +1,13 @@
+{
+  "keyboard": "encoder_rp2040",
+  "keymap": "default",
+  "layout": "LAYOUT",
+  "layers": [
+    [
+      "KC_A",
+      "KC_B",
+      "KC_C",
+      "KC_D"
+    ]
+  ]
+}
